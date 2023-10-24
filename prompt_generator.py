@@ -30,16 +30,15 @@ class PromptGenerator:
         )
         return
 
-    def generate_prompt(self, context_description):
+    def generate_prompt(self, context_description, examples = None):
+        examples_prompt = ""
+        if examples is not None:
+            for ex in examples:
+                examples_prompt+=f'''- Context: {ex['context']} \n Likely activities: {ex['expected_output']}\n'''
         user_message = {
             "role": "user",
-            "content": "Context: "
-                       + context_description
-                       + "Use an open-world assumption: anything that is not "\
-                         "explicit in the surrounding context of Bob may be possible. Do not exclude activities for which you "\
-                         "cannot determine their likelihood. Your final answer should be the list of activities that are likely with "\
-                         "respect to Bob's context, spelled exactly as I showed you, with this format ['<activity 1>', '<activity "\
-                         "2>', '<activity 3>']."
+            "content": f"{examples_prompt}\
+                       -Context: {context_description} \n-Likely activities: "
         }
         messages_list = deepcopy(self.messages)
         messages_list.append(user_message)

@@ -1,9 +1,8 @@
-import vercel_ai
 import logging
 import re
 import ast
 from collections import Counter
-
+import vercel_ai
 
 class ModelRequestHandler:
 
@@ -36,7 +35,7 @@ class ModelRequestHandler:
             while True:
                 try:
                     response = self.get_completion_from_message(messages)
-                    print(response)
+                    #print(response)
                     responses.append([s.lower() for s in self.find_vector_in_reply(response)])
                     break
                 except Exception as e:

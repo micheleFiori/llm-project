@@ -14,11 +14,10 @@ class Examples_manager:
 
     #TODO SCEGLIERE SE FARE SIMILARITY TRA TESTI O VETTORI DI CONSISTENZA
     def get_most_similar_examples(self, context, similarity = 'cosine'):
-        match similarity:
-            case 'cosine':
-                most_similar_examples = self.text_similarity_cosine(context, self.examples_df)
-            case 'jaccard':
-                most_similar_examples = self.text_similarity_jaccard(context, self.examples_df)
+        if similarity == 'cosine':
+            most_similar_examples = self.text_similarity_cosine(context, self.examples_df)
+        if similarity == 'jaccard':
+            most_similar_examples = self.text_similarity_jaccard(context, self.examples_df)
 
         return most_similar_examples
     
@@ -28,7 +27,7 @@ class Examples_manager:
         document_similarity_scores = [(i, score[0][0].numpy()) for i, score in enumerate(cosine_similarities)]
         sorted_similarity_scores = sorted(document_similarity_scores, key=lambda x: x[1], reverse=True)
 
-        return [pool_examples['activities'][s[0]] for s in sorted_similarity_scores][:k]
+        return [{ 'context': pool_examples['context'][s[0]], 'expected_output': pool_examples['activities'][s[0]]} for s in sorted_similarity_scores][:k]
         #return sorted_similarity_scores
 
     def text_similarity_jaccard(self, context, pool_examples, k=4):
@@ -40,7 +39,7 @@ class Examples_manager:
         document_similarity_scores = [(i, score) for i, score in enumerate(jaccard_similarities)]
         sorted_similarity_scores = sorted(document_similarity_scores, key=lambda x: x[1], reverse=True)
 
-        return [pool_examples['activities'][s[0]] for s in sorted_similarity_scores][:k]
+        return [{ 'context': pool_examples['context'][s[0]], 'expected_output': pool_examples['activities'][s[0]]} for s in sorted_similarity_scores][:k]
         #return sorted_similarity_scores
 
     @staticmethod
