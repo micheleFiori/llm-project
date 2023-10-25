@@ -17,7 +17,7 @@ class ModelRequestHandler:
 
     def get_completion_from_message(self, messages):
         result = ""
-        for chunk in self.client.chat("openai:gpt-3.5-turbo-16k", messages, self.params):
+        for chunk in self.client.chat("openai:gpt-3.5-turbo", messages, self.params):
             result += chunk
         return result
 
