@@ -1,3 +1,4 @@
+import numpy as np
 class ContextDescriptor:
 
     def __init__(self):
@@ -107,8 +108,28 @@ class ContextDescriptor:
         description+=f", Bob was {public_transportation}"
 
         return description
-    
+
+    @staticmethod
+    def derive_context_for_domino(context_vector):
+        context_mapper = {
+            "Indoor": 0, "Outdoor": 1,
+            "Home": 2, "Office": 3, "University": 4, "Mall": 5, "Station": 6, "Museum": 7, "Gym": 8, "Shop": 9,
+            "Bar": 10,
+            "Restaurant": 11, "Barbershop": 12, "Bank": 13, "Church": 14, "NullSemanticPlace": 15,
+            "NullSpeed": 16, "LowSpeed": 17, "MediumSpeed": 18, "HighSpeed": 19,
+            "Sunny": 20, "Rainy": 21, "Misty": 22, "Cloudy": 23, "Drizzly": 24, "Stormy": 25,
+            "NotOnPublicTransportationRoute": 26, "OnPublicTransportationRoute": 27,
+            "NegativeHeightVariation": 28, "NullHeightVariation": 29, "PositiveHeightVariation": 30,
+            "LowAudioLevel": 31, "MediumAudioLevel": 32, "HighAudioLevel": 33
+        }
+        inverse_context_mapper = {index: name for name, index in context_mapper.items()}
+        context_vector = np.where(context_vector == 1)[0]  # returns the indices of the elements equal to 1
+        context_vector = [inverse_context_mapper[index] for index in context_vector]
+        return context_vector
+
     def create_domino_context_description(self, context_vector):
+        context_vector = self.derive_context_for_domino(context_vector)
+        print(context_vector)
         list_at_the = ["Office", "Mall", "Station", "Museum", "Gym", "Shop", "Bar", "Restaurant", "Barbershop",
                        "Bank", "Church"]
         list_at = ["Home"]
