@@ -27,9 +27,6 @@ def derive_context(context_vector):
 if __name__ == '__main__':
     extrasensory_path = "datasets/extrasensory/extrasensory.pkl"
 
-    # with open(extrasensory_path, "rb") as f:
-    #    extrasensory = pkl.load(f)
-
 
     with open("datasets/extrasensory/extrasensory_unique_contexts.pkl", "rb") as file:
         unique_contexts = pkl.load(file)
@@ -40,8 +37,8 @@ if __name__ == '__main__':
 
 
 
-    f_contexts = open(f"./datasets/domino/domino-segmented-w4-hz50.txt", "rb")
-    f_consistencies = open(f"./datasets/domino/consistencies.txt", "rb")
+    f_contexts = open(f"datasets/domino/domino-segmented-w4-hz50.txt", "rb")
+    f_consistencies = open(f"datasets/domino/consistencies.txt", "rb")
 
     dataset = pkl.load(f_contexts)
     consistencies = pkl.load(f_consistencies)
@@ -63,10 +60,9 @@ if __name__ == '__main__':
         if labels[idx] not in unique_instances_dict[row_tuple]['labels']:
             unique_instances_dict[row_tuple]['labels'].append(labels[idx])
 
-
  
-    # context, labels, ontology_consistencies = extrasensory['context'], extrasensory['labels'], extrasensory[
-    #    'ontology_consistencies']
+    #context, labels, ontology_consistencies = extrasensory['context'], extrasensory['labels'], extrasensory[
+    #'ontology_consistencies']
 
     extrasensory_classes = ['BICICLYNG', 'LAYING DOWN', 'MOVING BY CAR', 'ON TRANSPORT', 'SITTING', 'STANDING', 'WALKING']
     domino_classes = ['BRUSHING_TEETH', 'CYCLING', 'ELEVATOR_DOWN', 'ELEVATOR_UP', 'LYING', 'MOVING_BY_CAR', 'RUNNING', 'SITTING', 'SITTING_ON_TRANSPORT', 'STAIRS_DOWN', 'STAIRS_UP', 'STANDING', 'STANDING_ON_TRANSPORT', 'WALKING']
@@ -96,7 +92,6 @@ if __name__ == '__main__':
     #exit(0)
 
     handler = ModelRequestHandler()
-
     start_time = time.time()
 
     all_responses = []
@@ -106,10 +101,9 @@ if __name__ == '__main__':
     model_examples = Examples_manager('domino_examples.csv')
     for c, l, o in list(zip(unique_contexts, unique_contexts_labels, unique_contexts_ontology_consistencies))[:10]:
         i += 1
-        
         #description = cd.create_extrasensory_context_description(c)
         description = cd.create_domino_context_description(c)
-        print('CURRENT: ', description  )
+        print('CURRENT: ', description)
         most_similar_examples = model_examples.get_most_similar_examples(description)
         #print('SIMILAR: \n', most_similar_examples) 
         print(description)
