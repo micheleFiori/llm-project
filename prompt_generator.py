@@ -34,11 +34,10 @@ class PromptGenerator:
         examples_prompt = ""
         if examples is not None:
             for ex in examples:
-                examples_prompt+=f'''- Context: {ex['context']} \n Likely activities: {ex['expected_output']}\n'''
+                examples_prompt+=f'''Context: {ex['context']}. Likely activities: {ex['expected_output']}. '''
         user_message = {
             "role": "user",
-            "content": f"{examples_prompt}\
-                       -Context: {context_description} \n-Likely activities: "
+            "content": f"{examples_prompt}. Context: {context_description}. Likely activities: "
         }
         messages_list = deepcopy(self.messages)
         messages_list.append(user_message)
