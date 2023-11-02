@@ -81,21 +81,23 @@ class ContextDescriptor:
         else:
             public_transportation = "not following a public transportation route"
 
-        description = "In the last 4 seconds,"
+        description = "In the last 4 seconds, the user Bob was"
         # Costruzione della frase
         if indoors_outdoors is not None or place is not None:
-            description += f" the user Bob was in an"
+            #description += f" in"
             if indoors_outdoors is not None:
-                description += f" {indoors_outdoors}"
-            description += " location"
+                description += f" in an {indoors_outdoors} location"
+            #else:
+                #description += f" a"
+            #description += " location"
             if place is not None:
                 description += f" {place}"
-            description += f", where he"
-        else:
-            description += " the user Bob"
+            description += f", where he was"
+        #else:
+        #    description += " the user Bob"
 
         if location_diameter is not None:
-            description += f" was {location_diameter}"
+            description += f" {location_diameter}"
             if speed is not None:
                 description += ","
 

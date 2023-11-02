@@ -22,7 +22,7 @@ class Examples_manager:
         return most_similar_examples
     
 
-    def text_similarity_cosine(self, context, pool_examples, k=4):
+    def text_similarity_cosine(self, context, pool_examples, k=3):
         cosine_similarities = [util.cos_sim(self.model_embeddings.encode(context, convert_to_tensor=True), self.model_embeddings.encode(doc, convert_to_tensor=True)) for doc in pool_examples['context']]
         document_similarity_scores = [(i, score[0][0].numpy()) for i, score in enumerate(cosine_similarities)]
         sorted_similarity_scores = sorted(document_similarity_scores, key=lambda x: x[1], reverse=True)
@@ -30,7 +30,7 @@ class Examples_manager:
         return [{ 'context': pool_examples['context'][s[0]], 'expected_output': pool_examples['activities'][s[0]]} for s in sorted_similarity_scores][:k]
         #return sorted_similarity_scores
 
-    def text_similarity_jaccard(self, context, pool_examples, k=4):
+    def text_similarity_jaccard(self, context, pool_examples, k=3):
 
         preprocessed_documents = [self.preprocess_text(doc) for doc in pool_examples['context']]
         preprocessed_query = self.preprocess_text(context)

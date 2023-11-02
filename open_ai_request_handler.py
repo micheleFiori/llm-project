@@ -14,8 +14,10 @@ class OpenAiRequestHandler:
     def get_completion_from_message(self, messages):
         completion = openai.ChatCompletion.create(
             model=self.model,
-            messages=messages)
-        print(completion.usage)
+            messages=messages,
+            temperature=0
+        )
+        #print(completion.usage)
         return completion.choices[0].message.content, completion.usage
 
     def find_vector_in_reply(self, reply):
@@ -36,10 +38,11 @@ class OpenAiRequestHandler:
                     print("MODEL RESPONSE:\n"+response)
                     responses.append([s.lower() for s in self.find_vector_in_reply(response)])
                     usages.append(usage)
+                    time.sleep(20)
                     break
                 except Exception as e:
                     print(e)
-                    time.sleep(55)
+                    time.sleep(60)
                     #print("exception")
                     continue
 
