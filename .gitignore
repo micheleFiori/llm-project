@@ -4,3 +4,6 @@ datasets/
 __pycache__/
 answers/
 .idea/
+open_ai_api_key.txt
+.ipynb_checkpoints/
+

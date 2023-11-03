@@ -13,24 +13,24 @@ class Examples_manager:
         self.model_embeddings = SentenceTransformer('all-MiniLM-L6-v2')
 
     #TODO SCEGLIERE SE FARE SIMILARITY TRA TESTI O VETTORI DI CONSISTENZA
-    def get_most_similar_examples(self, context, similarity = 'cosine'):
+    def get_most_similar_examples(self, context, similarity = 'cosine', k):
         if similarity == 'cosine':
-            most_similar_examples = self.text_similarity_cosine(context, self.examples_df)
+            most_similar_examples = self.text_similarity_cosine(context, self.examples_df, k)
         if similarity == 'jaccard':
-            most_similar_examples = self.text_similarity_jaccard(context, self.examples_df)
+            most_similar_examples = self.text_similarity_jaccard(context, self.examples_df, k)
 
         return most_similar_examples
     
 
-    def text_similarity_cosine(self, context, pool_examples, k=4):
+    def text_similarity_cosine(self, context, pool_examples, k):
         cosine_similarities = [util.cos_sim(self.model_embeddings.encode(context, convert_to_tensor=True), self.model_embeddings.encode(doc, convert_to_tensor=True)) for doc in pool_examples['context']]
-        document_similarity_scores = [(i, score[0][0].numpy()) for i, score in enumerate(cosine_similarities)]
+        document_similarity_scores = [(i, score[0][0].cpu().numpy()) for i, score in enumerate(cosine_similarities)]
         sorted_similarity_scores = sorted(document_similarity_scores, key=lambda x: x[1], reverse=True)
 
         return [{ 'context': pool_examples['context'][s[0]], 'expected_output': pool_examples['activities'][s[0]]} for s in sorted_similarity_scores][:k]
         #return sorted_similarity_scores
 
-    def text_similarity_jaccard(self, context, pool_examples, k=4):
+    def text_similarity_jaccard(self, context, pool_examples, k):
 
         preprocessed_documents = [self.preprocess_text(doc) for doc in pool_examples['context']]
         preprocessed_query = self.preprocess_text(context)
