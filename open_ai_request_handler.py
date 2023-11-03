@@ -38,7 +38,7 @@ class OpenAiRequestHandler:
                     print("MODEL RESPONSE:\n"+response)
                     responses.append([s.lower() for s in self.find_vector_in_reply(response)])
                     usages.append(usage)
-                    time.sleep(20)
+                    #time.sleep(20)
                     break
                 except Exception as e:
                     print(e)
