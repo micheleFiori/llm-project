@@ -29,7 +29,7 @@ class Examples_manager:
         cosine_similarities_to_normalize = self.normalize_similarities(0.84,1.0,cosine_similarities)
         document_similarity_scores = [(i, score) for i, score in enumerate(cosine_similarities_to_normalize)]
         sorted_similarity_scores = sorted(document_similarity_scores, key=lambda x: x[1], reverse=True)
-        return [{'context': pool_examples['context'][s[0]], 'expected_output': pool_examples['activities'][s[0]], 'score_normalized': s[1][0], 'score': s[1][1]} for i,s in enumerate(sorted_similarity_scores)][:k]
+        return [{'context': pool_examples['context'][s[0]], 'expected_output': pool_examples['activities'][s[0]], 'score_normalized': s[1][0], 'score': s[1][1]} for i,s in enumerate(sorted_similarity_scores) if s[1][0] >= k]
         #return sorted_similarity_scores
 
     def text_similarity_jaccard(self, context, pool_examples, k):
