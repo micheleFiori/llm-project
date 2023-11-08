@@ -1,0 +1,22 @@
+context;activities
+["Outdoor","NullSemanticPlace","LowSpeed","Misty","NotOnPublicTransportationRoute","NullHeightVariation"];"['CYCLING', 'MOVING_BY_CAR', 'RUNNING', 'STAIRS_DOWN', 'WALKING']"
+["Outdoor","NullSemanticPlace","NullSpeed","Misty","OnPublicTransportationRoute","NullHeightVariation"];"['LYING', 'SITTING', 'STANDING']"
+["Indoor","Restaurant","LowSpeed","Drizzly","NotOnPublicTransportationRoute","NullHeightVariation"];"['WALKING']"
+["Indoor","Station","NullSpeed","Sunny","OnPublicTransportationRoute","NullHeightVariation"];"['LYING', 'SITTING', 'STANDING']"
+["Indoor","Home","NullSpeed","Sunny","NotOnPublicTransportationRoute","NullHeightVariation"];"['BRUSHING_TEETH', 'CYCLING', 'LYING', 'RUNNING', 'SITTING', 'STANDING']"
+["Outdoor","NullSemanticPlace","LowSpeed","Misty","OnPublicTransportationRoute","NullHeightVariation"];"['CYCLING', 'MOVING_BY_CAR', 'RUNNING', 'WALKING', 'SITTING_ON_TRANSPORT', 'STANDING_ON_TRANSPORT']"
+["Outdoor","NullSemanticPlace","MediumSpeed","Sunny","OnPublicTransportationRoute","NullHeightVariation"];"['CYCLING', 'MOVING_BY_CAR', 'RUNNING', 'WALKING', 'SITTING_ON_TRANSPORT', 'STANDING_ON_TRANSPORT']"
+["Indoor","Office","NullSpeed","Sunny","NotOnPublicTransportationRoute","NullHeightVariation"];"['BRUSHING_TEETH', 'LYING', 'SITTING', 'STANDING']"
+["Indoor","University","NullSpeed","Stormy","NotOnPublicTransportationRoute","NullHeightVariation"];"['BRUSHING_TEETH', 'LYING', 'SITTING', 'STANDING']"
+["Indoor","Gym","NullSpeed","Cloudy","NotOnPublicTransportationRoute","NullHeightVariation"];"['CYCLING', 'RUNNING', 'LYING', 'SITTING', 'STANDING']"
+["Indoor","Gym","LowSpeed","Cloudy","NotOnPublicTransportationRoute","NullHeightVariation"];"['RUNNING', 'WALKING']"
+["Outdoor","NullSemanticPlace","LowSpeed","Sunny","NotOnPublicTransportationRoute","PositiveHeightVariation"];"['RUNNING', 'MOVING_BY_CAR', 'CYCLING', 'STAIRS_UP', 'WALKING']"
+["Indoor","Home","LowSpeed","Stormy","NotOnPublicTransportationRoute","PositiveHeightVariation"];"['STAIRS_UP', 'WALKING']"
+["Indoor","Mall","LowSpeed","Stormy","NotOnPublicTransportationRoute","NegativeHeightVariation"];"['STAIRS_DOWN', 'WALKING']"
+["Indoor","Office","NullSpeed","Stormy","NotOnPublicTransportationRoute","PositiveHeightVariation"];['ELEVATOR_UP']
+["Indoor","University","NullSpeed","Stormy","NotOnPublicTransportationRoute","NegativeHeightVariation"];['ELEVATOR_DOWN']
+["Indoor","Mall","NullSpeed","Sunny","NotOnPublicTransportationRoute","NullHeightVariation"];"['LYING', 'SITTING', 'STANDING']"
+["Indoor","University","LowSpeed","Sunny","NotOnPublicTransportationRoute","NullHeightVariation"];"['BRUSHING_TEETH', 'WALKING']"
+["Outdoor","NullSemanticPlace","HighSpeed","Sunny","OnPublicTransportationRoute","NullHeightVariation"];"['CYCLING', 'MOVING_BY_CAR', 'SITTING_ON_TRANSPORT', 'STANDING_ON_TRANSPORT']"
+["Outdoor","NullSemanticPlace","LowSpeed","Cloudy","NotOnPublicTransportationRoute","PositiveHeightVariation"];"['CYCLING', 'MOVING_BY_CAR', 'RUNNING', 'WALKING', 'STAIRS_UP']"
+["Outdoor","NullSemanticPlace","MediumSpeed","Sunny","NotOnPublicTransportationRoute","NullHeightVariation"];"['CYCLING', 'MOVING_BY_CAR', 'RUNNING', 'WALKING']"

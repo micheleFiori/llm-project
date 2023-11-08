@@ -161,7 +161,7 @@ class ContextDescriptor:
             transportation = 'not following/close to a public transportation route'
         else:
             transportation = 'currently following/close to a public transportation route'
-
+            
         if 'Null' in context_vector[5]:
             height = 'neither going up nor down'
         if 'Positive' in context_vector[5]:
