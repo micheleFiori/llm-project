@@ -16,13 +16,9 @@ class Examples_manager:
 
     #TODO SCEGLIERE SE FARE SIMILARITY TRA TESTI O VETTORI DI CONSISTENZA
     def get_most_similar_examples(self, context, similarity,k):
-    def get_most_similar_examples(self, context, similarity = 'cosine', k):
         if similarity == 'cosine':
             most_similar_examples = self.text_similarity_cosine(context, self.examples_df,k)
-            most_similar_examples = self.text_similarity_cosine(context, self.examples_df, k)
         if similarity == 'jaccard':
-            #most_similar_examples = self.text_similarity_jaccard(context, self.examples_df,21)
-            most_similar_examples = self.text_similarity_jaccard_vectors(context, self.examples_df,k)
             most_similar_examples = self.text_similarity_jaccard(context, self.examples_df, k)
 
         return most_similar_examples
@@ -50,11 +46,8 @@ class Examples_manager:
 
     def text_similarity_jaccard_vectors(self, context_vector, pool_examples, k):
 
-        #preprocessed_documents = [self.preprocess_text(doc) for doc in pool_examples['context']]
         preprocessed_documents = [ast.literal_eval(doc) for doc in pool_examples['context']]
         preprocessed_query = context_vector
-        print(preprocessed_query)
-        print(preprocessed_documents)
         jaccard_similarities = [self.jaccard_similarity(set(preprocessed_query), set(doc)) for doc in preprocessed_documents]
         document_similarity_scores = [(i, score) for i, score in enumerate(jaccard_similarities)]
         sorted_similarity_scores = sorted(document_similarity_scores, key=lambda x: x[1], reverse=True)
@@ -71,8 +64,6 @@ class Examples_manager:
     def preprocess_text(text):
         stop_words = set(stopwords.words('english'))
         words = word_tokenize(text.lower())
-        #words = [ps.stem(word) for word in words if word.isalpha()]
-        #words = [word for word in words if word not in stop_words] #DA VEDERE SE HA SENSO TOGLIERE LE STOPWORDS (IMO NO)
         return set(words)
     
 
