@@ -42,7 +42,7 @@ class OpenAiRequestHandler:
                     break
                 except Exception as e:
                     print(e)
-                    time.sleep(60)
+                    #time.sleep(60)
                     #print("exception")
                     continue
 
